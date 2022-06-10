@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block data %}
+{% for msg in get_flashed_messages() %}
+<div class = "flash"><font color="red">{{msg}}</font></div>
+{% endfor %}
+<form action="/login" method="POST">
+    <div>
+        <label for="log_in">Username: </label>
+        <input type="text" name="log_in">
+        <button type="submit">Login</button>
+    </div>
+</form>
+<br>
+Don't have an account?
+<br>
+<form action="/register" method="POST">
+    <div>
+        <label for="reg">Username: </label>
+        <input type="text" name="reg">
+        <button type="submit">Register</button>
+    </div>
+</form>
+{% endblock %}

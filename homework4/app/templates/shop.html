@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block data %}
+<a href="/home">Home</a>
+<br>
+<br>
+<h3>Balance: </h3>
+{{money}}
+<br>
+<h3>Values: </h3>
+{% for crypto in crypto_prices %}
+{{crypto.name}}: {{crypto.value}} <br>
+{% endfor %}
+<br>
+{% for msg in get_flashed_messages() %}
+<div class = "flash">{{msg}}</div>
+{% endfor %}
+<h3>Choose a crypto to buy</h3>
+<form action="/buy" method="POST">
+    {% for crypto in crypto_values %}
+    <div>
+        Buy {{crypto}}
+        <br>
+        <input type="submit" name="buy_crypto" value="{{crypto}} 1">
+        <br>
+        <input type="submit" name="buy_crypto" value="{{crypto}} 5">
+        <br>
+        <input type="submit" name="buy_crypto" value="{{crypto}} 10">
+        <br>
+        <input type="submit" name="buy_crypto" value="{{crypto}} 50">
+        <br>
+        <input type="submit" name="buy_crypto" value="{{crypto}} 100">
+        <br>
+    </div>
+    {% endfor %}
+</form>
+<br>
+<br>
+{% endblock %}

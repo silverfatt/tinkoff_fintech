@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block data %}
+<a href="/home/shop">Shop</a>
+<a href="/home/sell">Sell crypto</a>
+<h1>Hello, {{username}}</h1>
+<h2>Balance:</h2>
+<h3>Money:</h3>
+{{money}}
+<h3>Crypto:</h3>
+{% for crypto in crypto_list %}
+{{crypto}}
+<br>
+{% endfor %}
+<h2>Wanna add new currency?</h2>
+{% for msg in get_flashed_messages() %}
+<div class = "flash">{{msg}}</div>
+{% endfor %}
+<br>
+<form action="/add" method="POST">
+    <div>
+        <label for="cur_adder">Add new currency</label>
+        <input type="text" name="cur_adder">
+        <button type="submit">Add</button>
+    </div>
+</form>
+
+<h2>History of operations:</h2>
+{% for o in operations %}
+{{o}} <br>
+{% endfor %}
+{% if prev %}
+<a href="?number={{ prev }}">&laquo; Previous</a>
+{% endif %}
+{% if next %}
+<a href="?number={{ next }}">Next &raquo;</a>
+{% endif %}
+{% endblock %}
